@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Mopar Parts — Smart Search Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/styles.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-row">
+      <span class="promo">Genuine Mopar Parts &amp; Accessories up to 30% Off!</span>
+      <nav aria-hidden="true"><span>FAQ</span><span>Contact us</span><span>My account</span><span>My wishlist</span><span>Log in</span><span>🛒 0</span></nav>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="logo" href="/" aria-label="All Mopar Parts home">
+        <svg class="logo-mark" viewBox="0 0 84 76" aria-hidden="true"><path d="M10 74 A36 36 0 1 1 74 74" fill="none" stroke="currentColor" stroke-width="15"/><rect x="35" y="14" width="14" height="60" fill="currentColor"/></svg>
+        <span class="logo-text"><span class="l1">ALL</span><span class="l2">MOPARPARTS.COM</span></span>
+      </a>
+      <span class="based">Based in the USA <span aria-hidden="true">🇺🇸</span></span>
+      <div class="search-wrap">
+        <form id="search-form" class="search" role="search" autocomplete="off">
+          <input id="q" name="q" type="text" placeholder="Search by part, part number, or vehicle" aria-label="Search" aria-controls="ac" aria-expanded="false" />
+          <button type="submit" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+          </button>
+        </form>
+        <div id="ac" class="ac" hidden role="listbox" aria-label="Search suggestions"></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mainnav" aria-hidden="true">
+    <div class="wrap mainnav-row">
+      <span>Shop by Category <i>⌄</i></span><span>Shop by Model <i>⌄</i></span><span>Best Sellers</span><span><b class="wrench">🔧</b> Shop Our Repair Parts Catalog <i>⌄</i></span>
+    </div>
+  </nav>
+
+  <section class="fitment">
+    <div class="wrap fitment-row">
+      <span class="fitment-label">Select Fitment</span>
+      <label class="step"><span>1</span><select id="ymm-year" aria-label="Year"><option value="">Select Year</option></select></label>
+      <label class="step"><span>2</span><select id="ymm-make" aria-label="Make" disabled><option value="">Select Make</option></select></label>
+      <label class="step"><span>3</span><select id="ymm-model" aria-label="Model" disabled><option value="">Select Model</option></select></label>
+      <button id="ymm-clear" class="clear" type="button" hidden>Clear</button>
+    </div>
+  </section>
+
+  <main>
+    <section class="lab wrap" aria-label="Prototype controls">
+      <div class="lab-intro">
+        <strong>Smart search prototype.</strong> Every search runs three ways at once — today's site search, Claude Haiku and TypeSafe Jev — so you can compare
+        <b>accuracy</b>, <b>speed</b> and <b>cost</b>. Start typing to see suggestions, then press <b>Enter</b> for the full side-by-side comparison — or try one of these:
+      </div>
+      <div class="examples" id="examples"></div>
+      <div class="toggles">
+        <label title="Simple searches like '2022 bronco air filter' are answered without calling the AI at all"><input type="checkbox" id="opt-fastpath" /> Skip AI for simple searches</label>
+        <label title="Repeat searches are answered from memory (free and instant). Off = every search is timed for real."><input type="checkbox" id="opt-cache" /> Reuse earlier answers</label>
+        <span id="key-status" class="key-status"></span>
+      </div>
+    </section>
+
+    <section id="hero" class="hero">
+      <div class="hero-text"><span>ALL GENUINE</span><span>ALL MOPAR</span><span class="alt">ALL DISCOUNTED</span></div>
+    </section>
+
+    <section id="results" class="wrap results-area" hidden>
+      <div id="verdict" class="verdict"></div>
+      <div id="columns" class="columns"></div>
+    </section>
+
+    <section id="scoreboard" class="wrap scoreboard" hidden>
+      <h2>Scoreboard <span>this session</span></h2>
+      <p id="score-sentence" class="score-sentence"></p>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Searches</th>
+            <th title="Share of shown parts that fit the vehicle in the search">Parts that fit</th>
+            <th title="How long suggestions took to appear while typing (typical)">Suggestions appear in</th>
+            <th title="How long full results took after pressing search (typical)">Results appear in</th>
+            <th title="Slowest full search this session">Slowest search</th>
+            <th title="AI cost per 1,000 searches, including the suggestion lookups while typing">Cost per 1,000 searches</th>
+          </tr>
+        </thead>
+        <tbody id="score-body"></tbody>
+      </table>
+      <p class="fine">Cost counts every AI call a shopper triggers: the suggestion lookups while typing plus the final search. Today's site search has no AI cost.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Prototype — only search works. Catalog and fitment from the client export. Prices and images from allmoparparts.com.</div>
+  </footer>
+
+  <script src="static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+# Client data: never commit. Put exports in data/ locally.
+data/*
+!data/README.md
+*.csv
+export_catalog_product_*
+# Eval outputs that embed client SKUs; regenerate with eval/*.py
+eval/goldens.jsonl
+eval/results.csv
+eval/speed_raw.csv
